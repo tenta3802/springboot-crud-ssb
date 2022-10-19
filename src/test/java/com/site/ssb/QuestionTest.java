@@ -1,6 +1,7 @@
 package com.site.ssb;
 
 import com.site.ssb.Repository.QuestionRepository;
+import com.site.ssb.entity.Answer;
 import com.site.ssb.entity.Question;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-class SsbApplicationTests {
+class QuestionTest {
 
 	@Autowired
 	private QuestionRepository questionRepository;
@@ -69,5 +70,25 @@ class SsbApplicationTests {
 		List<Question> list = questionRepository.findBySubjectLike("%입니다%");
 		Question q = list.get(0);
 		assertEquals("질문입니다.1", q.getSubject());
+	}
+
+	@Test
+	void updateTest() {
+		Optional<Question> oq = questionRepository.findById(1);
+		assertTrue(oq.isPresent()); //true 인지 확인.
+		Question q = oq.get();
+		q.setSubject("수정된 제목.1");
+		questionRepository.save(q);
+	}
+
+	@Test
+	void deleteTest() {
+		assertEquals(2, questionRepository.count()); // 삭제 전 데이터 수 일치하는지 확인
+		Optional<Question> oq = questionRepository.findById(1);
+		assertTrue(oq.isPresent());
+		Question q = oq.get();
+		questionRepository.delete(q);
+		assertEquals(1, questionRepository.count());
+
 	}
 }
