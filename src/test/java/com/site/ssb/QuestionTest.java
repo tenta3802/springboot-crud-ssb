@@ -72,23 +72,22 @@ class QuestionTest {
 		assertEquals("질문입니다.1", q.getSubject());
 	}
 
-	@Test
-	void updateTest() {
-		Optional<Question> oq = questionRepository.findById(1);
-		assertTrue(oq.isPresent()); //true 인지 확인.
-		Question q = oq.get();
-		q.setSubject("수정된 제목.1");
-		questionRepository.save(q);
-	}
+//	@Test
+//	void updateTest() {
+//		Optional<Question> oq = questionRepository.findById(1);
+//		assertTrue(oq.isPresent()); //true 인지 확인.
+//		Question q = oq.get();
+//		q.setSubject("수정된 제목.1");
+//		questionRepository.save(q);
+//	}
 
-	@Test
-	void deleteTest() {
-		assertEquals(2, questionRepository.count()); // 삭제 전 데이터 수 일치하는지 확인
-		Optional<Question> oq = questionRepository.findById(1);
-		assertTrue(oq.isPresent());
-		Question q = oq.get();
-		questionRepository.delete(q);
-		assertEquals(1, questionRepository.count());
-
-	}
+//	@Test
+//	void deleteTest() {
+//		assertEquals(2, questionRepository.count()); // 삭제 전 데이터 수 일치하는지 확인
+//		Optional<Question> oq = questionRepository.findById(1);
+//		assertTrue(oq.isPresent());
+//		Question q = oq.get();
+//		questionRepository.delete(q);
+//		assertEquals(1, questionRepository.count());
+//	}
 }

@@ -1,8 +1,10 @@
 package com.site.ssb.entity;
 
+import com.site.ssb.Repository.QuestionRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -28,5 +30,4 @@ public class Question {
 
     @OneToMany(mappedBy = "question",cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
-
 }
